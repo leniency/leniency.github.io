@@ -183,6 +183,8 @@
     <Content Include="Scripts\three\three.61.js" />
     <Content Include="Scripts\three\three.61.min.js" />
     <Content Include="Scripts\three\Three.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="three\index.html" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.min.js" />
@@ -500,6 +502,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="content\images\" />
+    <Folder Include="three\scripts\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
@@ -509,8 +512,6 @@
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-scenario.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\threejs\three-r55.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\threejs\three.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
