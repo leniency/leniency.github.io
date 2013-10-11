@@ -25,6 +25,10 @@
     <Content Include="index.html" />
     <Content Include="README.md" />
     <Content Include="content\styles\main.less" />
+    <Content Include="scripts\modernizr.js" />
+    <Content Include="scripts\modernizr.min.js">
+      <DependentUpon>modernizr.js</DependentUpon>
+    </Content>
     <Content Include="scripts\three\cameras\Camera.js" />
     <Content Include="scripts\three\cameras\OrthographicCamera.js" />
     <Content Include="scripts\three\cameras\PerspectiveCamera.js" />
@@ -183,7 +187,17 @@
     <Content Include="scripts\three\three.61.js" />
     <Content Include="scripts\three\three.61.min.js" />
     <Content Include="scripts\three\Three.js" />
+    <Content Include="scripts\modernizr.min.js.map">
+      <DependentUpon>modernizr.js</DependentUpon>
+    </Content>
+    <Content Include="three\scripts\igni\Igni.js" />
     <None Include="scripts\_references.js" />
+    <Content Include="three\content\css\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="three\content\css\main.min.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
     <Content Include="three\index.html" />
     <None Include="scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="scripts\angular-bootstrap-prettify.js" />
@@ -492,6 +506,8 @@
     <Content Include="scripts\jquery-2.0.3.js" />
     <Content Include="scripts\jquery-2.0.3.min.js" />
     <Content Include="scripts\jquery-2.0.3.min.map" />
+    <Content Include="three\content\css\main.less" />
+    <Content Include="three\scripts\igni\Igni.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -502,7 +518,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="content\images\" />
-    <Folder Include="three\scripts\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\typings\angularjs\angular-cookies.d.ts" />
@@ -512,6 +527,8 @@
     <TypeScriptCompile Include="scripts\typings\angularjs\angular-scenario.d.ts" />
     <TypeScriptCompile Include="scripts\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="scripts\typings\three.d.ts" />
+    <TypeScriptCompile Include="three\scripts\igni\Igni.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -6,18 +6,29 @@
 #container {
   width: 800px;
   margin: 0 auto;
+}
+#container > nav {
+  border-bottom: 1px dotted #888;
+}
+#container > nav a {
+  color: #888;
+  padding: 0.3em 1em 0.3em 0;
+  text-decoration: none;
+  font-size: 1.4em;
+}
+#container > nav a:hover {
+  color: #333;
+}
+#container > article {
+  padding: 2em;
+  clear: both;
   background-color: #fff;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
 }
-#container > nav {
-  float: right;
-}
-#container > article {
-  clear: both;
-}
 #container > footer {
+  border-top: 1px dotted #888;
   clear: both;
   text-align: right;
   color: #999;
