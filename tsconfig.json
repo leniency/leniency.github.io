@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    // https://www.typescriptlang.org/tsconfig#paths
+    "paths": { // import aliases
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}

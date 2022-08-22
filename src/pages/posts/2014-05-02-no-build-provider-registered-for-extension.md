@@ -1,0 +1,16 @@
+---
+title: No build provider registered for the extension '.cshtml'
+date: 2014-05-02
+description: ""
+categories: []
+tags: ["IIS","MSBuild"]
+layout: "../../layouts/BlogPost.astro"
+---
+
+# No build provider registered for the extension '.cshtml'
+
+There is no build provider registered for the extension '.cshtml'. You can register one in the `<compilation><buildProviders>` section in machine.config or web.config. Make sure is has a BuildProviderAppliesToAttribute attribute which includes the value 'Web' or 'All'.
+
+This is an especially annoying bug that pops up occasionally in development, often after making no changes to the web.config or any cshtml files. Cleaning and recompiling the solution doesn't work (even after undoing any changes that worked 30 seconds ago).
+
+Only valid solution I've found is to stop IIS Express and delete the temp ASP.Net files. Restart, and all is well. There are other situations where this error is valid, but if it pops up randomly, time to dump the temp files.

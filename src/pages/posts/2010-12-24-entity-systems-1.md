@@ -1,0 +1,203 @@
+---
+title: EntitySystems - Part 1
+date: 2014-04-18
+description: ""
+categories: []
+tags: ["C#","EntitySystems"]
+layout: "../../layouts/BlogPost.astro"
+---
+
+# Entity Systems Part 1: Entity and EntityManager
+
+Entity##
+First things first, an entity is essentially an id number. There are a few useful utility functions that can be encapsulated inside of it, but embedding too many will cause problems down the line. Most of this is duplicated in C# from Adam Martin's post here.
+
+Entities know where to find the component store to add and retrieve associated components. Arguments can be made about storing basic things like position and orientation in the entity, but as will be shown later, systems don't hold references to entities, just lists of components to operate on.
+
+```csharp
+/// <summary>
+/// Basic entity class.  Consists of an id and a list of components.  Ideally it
+/// should only be an id, but it's useful to be able to know what components it
+/// is built of and to find them quickly.
+/// </summary>
+public class Entity
+{
+    readonly ulong _id;
+
+    public ulong Id
+    {
+        get
+        {
+            return _id;
+        }
+    }
+
+    /// <summary>
+    /// Static instance of the entity manager.  Entities should be able to add 
+    /// themselves to the manager on creation - saves having to remember to do this.
+    /// </summary>
+    public static EntityManager EntityManager { get; set; }
+        
+    public Entity(ulong id)
+    {
+        _id = id;
+
+        if (EntityManager == null)
+            throw new ArgumentNullException("Entity manager cannot be null.");
+
+        EntityManager.Add(this);
+    }
+
+    /// <summary>
+    /// Add a new component to the entity
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="component"></param>
+    /// <returns></returns>
+    public Entity Add<T>(T component) where T : IComponent
+    {
+        EntityManager.Components.Add(Id, component);
+        return this;
+    }
+
+    /// <summary>
+    /// Return this as a component
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public T As<T>() where T : IComponent
+    {
+        return EntityManager.Components.Get<T>(Id);
+    }
+}
+```
+
+## EntityManager
+
+The manager is responsible for creating and tracking loaded entities and assigning them ids. Entity ids are transient - rebuilt every load. Template ids persist between game runs. Currently I have two `Get<T>` functions that aren't implemented - still thinking if those are actually needed or not. Leaning towards no. Not show here are the details of the ComponentManager - that's another long post.
+
+```csharp
+public class EntityManager
+{
+    static ulong _nextAvailableId;
+
+    Dictionary<ulong, Entity> _entities;
+
+    /// <summary>
+    /// Store of all loaded components, indexed by type and entity id
+    /// </summary>
+    public ComponentManager Components { get; set; }
+
+    public Entity this[ulong index]
+    {
+        get
+        {
+            // TODO: Should we be doing this?
+            // If we're looking for a non-existant entity, go ahead and add it
+            if (!_entities.ContainsKey(index))
+            {
+                Add(new Entity(index));
+            }
+
+            return _entities[index]; 
+        }
+    }
+
+    public EntityManager()
+    {
+        _entities = new Dictionary<ulong, Entity>();
+        _nextAvailableId = 0;
+        Components = new ComponentManager();
+
+        // Check that entities know this is the manager
+        if (Entity.EntityManager == null)
+        {
+            Entity.EntityManager = this;
+        }
+    }
+
+    /// <summary>
+    /// Return all entities containing a particular type of component
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public IEnumerable<Entity> Get<T>() where T : IComponent
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Return all entities containing all of the parameter types
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public IEnumerable<Entity> Get(params Type[] componentTypes)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Add an existing entity to this
+    /// </summary>
+    /// <param name="entity"></param>
+    public void Add(Entity entity)
+    {
+        if (!_entities.ContainsKey(entity.Id))
+        {
+            _entities.Add(entity.Id, entity);
+        }
+    }
+
+    /// <summary>
+    /// Create and return a new entity
+    /// </summary>
+    /// <returns></returns>
+    public Entity Create()
+    {
+        _nextAvailableId++;
+
+        // Ensure that the next available id is, in fact, available
+        while (_entities.ContainsKey(_nextAvailableId))
+        {
+            _nextAvailableId++;
+        }
+
+        return new Entity(_nextAvailableId);
+    }
+
+    /// <summary>
+    /// Remove an entity
+    /// </summary>
+    /// <param name="entity"></param>
+    public void Remove(Entity entity)
+    {
+        Components.Remove(entity.Id);
+        _entities.Remove(entity.Id);
+    }
+
+    /// <summary>
+    /// Remove an entity
+    /// </summary>
+    /// <param name="entity"></param>
+    public void Remove(ulong id)
+    {
+        Components.Remove(id);
+        _entities.Remove(id);
+    }
+}
+```
+
+Currently entity id's are just ulong's incremented for every entity. Theoretically it's possible to reach the max, but even creating one new entity every millisecond, it would take over 500,000,000 years to reach the max. ulong's are really big. Even just a plain int would give us 2,147,483,647 possibilities (positive ints only).
+
+## Sample Usage
+```csharp
+_manager = new EntityManager();
+
+_manager.Create()
+    .Add<Transform>(new Transform() { })
+    .Add<Renderable>(new Renderable() { });
+
+var transform = _manager[1L].As<Transform>();
+```
+
+Nothing really special here - most of the work is done in the ComponentManager. That's coming up next.

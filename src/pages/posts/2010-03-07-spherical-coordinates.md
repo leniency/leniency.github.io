@@ -1,0 +1,191 @@
+---
+title: Spherical Coordinates in XNA
+date: 2010-03-07
+description: ""
+categories: []
+tags: ["C#","XNA"]
+layout: "../../layouts/BlogPost.astro"
+---
+
+# Spherical Coordinates in XNA
+OTD uses a globe based board. As such, spherical coordinates can be useful. The aim is to eventually be able to load a terrain map from a 2D image file. While I have a ways to go before that, I do have a utility class for managing spherical coordinates. Taking from DirectX's Vector2 and Vector3, I settled on Polar3 as a short yet descriptive stuct name.
+
+Spherical coordinates need three basic elements - the azimuth phi, Φ; elevation theta θ; and a radius, R. Φ runs between 0 and 2π. θ however presents some choices. We can set one of the poles to be 0 and the other π, or set the equator to 0 and the poles to be +/- π/2. I haven't gotten far enough to determine which is the best way, leaving the north pole at 0 appears to be the easiest option when dealing with rotations. We'll see in practice though. Two properties for latitude and longitude can be set up that handle as expected.
+
+Another thing to remember is which direction is up. The equations over at wikipedia and elsewhere place up as the Z axis. However, the default in XNA is Y axis, so Cartesian conversions need to account for this.
+
+```csharp
+/// <summary>
+/// Spherical Coordinate
+/// </summary>
+/// <see cref="http://en.wikipedia.org/wiki/Spherical_coordinates"/>
+/// <see cref="http://www.radicalcartography.net/?projectionref"/>
+public struct Polar3 : IEquatable<Polar3>
+{
+    /// <summary>
+    /// Angle in the Right, Forward plane
+    /// </summary>
+    public float Phi;
+
+    /// <summary>
+    /// Angle around the Up axis
+    /// </summary>
+    public float Theta;
+
+    /// <summary>
+    /// Radius
+    /// </summary>
+    public float R;
+
+    #region Latitude and Longitude Properties
+
+    /// <summary>
+    /// Latitude in radians
+    /// -pi/2 <= theta <= pi/2
+    /// </summary>
+    public float Latitude
+    {
+        get
+        {
+            return MathHelper.PiOver2 - Theta;
+        }
+    }
+
+    /// <summary>
+    /// Longitude in radians
+    /// 0 <= phi < 2pi
+    /// </summary>
+    public float Longitude
+    {
+        get
+        {
+            return Phi + (float)Math.PI;
+        }
+    }
+
+    #endregion;
+
+
+    #region Constructors
+
+    public Polar3(float theta, float phi, float r)
+    {
+        Theta = theta;
+        Phi = phi;
+        R = r;
+    }
+
+    #endregion;
+
+    #region Operators
+
+    /// <summary>
+    /// Equals
+    /// </summary>
+    /// <param name="value1"></param>
+    /// <param name="value2"></param>
+    /// <returns></returns>
+    public bool Equals(Polar3 other)
+    {
+        return ((this.Theta == other.Theta) &&
+            (this.Phi == other.Phi) &&
+            (this.R == other.R));
+    }
+
+    /// <summary>
+    /// Equality Operator
+    /// </summary>
+    /// <param name="value1"></param>
+    /// <param name="value2"></param>
+    /// <returns></returns>
+    public static bool operator ==(Polar3 value1, Polar3 value2)
+    {
+        return value1.Equals(value2);
+    }
+
+    /// <summary>
+    /// Inequality Operator
+    /// </summary>
+    /// <param name="value1"></param>
+    /// <param name="value2"></param>
+    /// <returns></returns>
+    public static bool operator !=(Polar3 value1, Polar3 value2)
+    {
+        return !value1.Equals(value2);
+    }
+
+    /// <summary>
+    /// Get the object hashcode
+    /// </summary>
+    /// <returns></returns>
+    public override int GetHashCode()
+    {
+        return Theta.GetHashCode() + Phi.GetHashCode() + R.GetHashCode();
+    }
+
+    #endregion;
+
+    #region 2D Map Projections
+
+    /// <summary>
+    /// Returns the xy Miller projection
+    /// </summary>
+    /// <see cref="http://en.wikipedia.org/wiki/Miller_cylindrical_projection"/>
+    /// <returns></returns>
+    public Vector2 ProjectMiller()
+    {
+        Vector2 xy = new Vector2();
+
+        xy.X = Longitude;
+        
+        /*
+         * (5/4) * ln( tan( pi/4 + 2theta/5 ) )
+         */
+        xy.Y = Latitude * 2 / 5;
+        xy.Y = xy.Y + MathHelper.PiOver4;
+        xy.Y = (float)Math.Log( Math.Tan(xy.Y) );
+        xy.Y = xy.Y * 1.25f;
+
+        return xy;
+    }
+
+    #endregion;
+
+    /// <summary>
+    /// Create a polar coordinate from a cartesian vector.
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <returns></returns>
+    public static Polar3 CreateFromVector(Vector3 vector)
+    {
+        /*
+         * DirectX defines up as (0,1,0), so we need to move some coords around.
+         * Theta becomes the vertical angle against the Y axis
+         * Phi becomes the horizontal angle in the XZ plane.
+         */
+        Polar3 coordinate = new Polar3(
+            (float)Math.Acos(vector.Y / vector.Length()),
+            (float)Math.Atan2(vector.X, vector.Z),
+            vector.Length()
+            );
+        return coordinate;
+    }
+
+    /// <summary>
+    /// To String
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString()
+    {
+        return (String.Format("(Theta:{0}, Phi:{1}, R:{2}, Lat:{3}, Long:{4})", Theta, Phi, R, Latitude, Longitude));
+    }
+}
+```
+
+## Map Projections
+ProjectMiller() returns 2D coordinate when using a Miller projection. It needs a little bit of work still, but the coordinates appear to be sound (just needs some offsetting) to map to a 2D image.
+
+Other projections such as Mercator and Mollweide could be added as well.
+
+## Notes
+Currently all the available values (Phi, Theta) and properties (Latitude, Longitude) are in radians. Given that all other C# functions use radians, this seemed the simplest.

@@ -1,0 +1,28 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import BlogHeader from '../components/BlogHeader.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const {content} = Astro.props;
+const {title, description,date} = content;
+---
+
+<html lang={ content.lang || 'en' }>
+  <head>
+    <BaseHead title={title} description={description} permalink="" />
+    <link rel="stylesheet" href="/blog.css" />
+    <style lang="scss">
+    
+    </style>
+  </head>
+
+  <body>
+    <BlogHeader />
+    <div class="wrapper">
+      <BlogPost title={title} date={date}>
+        <slot />
+      </BlogPost>
+    </div>
+  </body>
+</html>
+
