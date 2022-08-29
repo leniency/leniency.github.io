@@ -7,8 +7,6 @@ tags: ["IIS","MSBuild"]
 layout: "../../layouts/BlogPost.astro"
 ---
 
-# No build provider registered for the extension '.cshtml'
-
 There is no build provider registered for the extension '.cshtml'. You can register one in the `<compilation><buildProviders>` section in machine.config or web.config. Make sure is has a BuildProviderAppliesToAttribute attribute which includes the value 'Web' or 'All'.
 
 This is an especially annoying bug that pops up occasionally in development, often after making no changes to the web.config or any cshtml files. Cleaning and recompiling the solution doesn't work (even after undoing any changes that worked 30 seconds ago).

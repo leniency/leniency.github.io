@@ -4,18 +4,19 @@ export interface Props {
   date: string;
 }
 
-const { title, date} = Astro.props;
+const { title, date } = Astro.props;
 ---
 
 <div class="layout">
   <article class="content">
-  <div>
-    <header>
-      <p class="publish-date">{date}</p>
-    </header>
-    <main>
-      <slot />
-    </main>
-  </div>
+    <div>
+      <header>
+        <p class="publish-date">{date}</p>
+      </header>
+      <main>
+        <h1>{title}</h1>
+        <slot />
+      </main>
+    </div>
   </article>
 </div>

@@ -1,15 +1,14 @@
 import { defineConfig } from 'astro/config';
-import vue from '@astrojs/vue';
-import Unocss from 'unocss/vite'
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://leniency.github.io',
-	// Enable Vue to support Vue components.
-	integrations: [vue()],
+
+
+	integrations: [mdx()],
 	vite: {
 		plugins: [
-			Unocss()
 		],
 	},
 });

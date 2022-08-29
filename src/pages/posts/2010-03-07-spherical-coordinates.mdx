@@ -7,7 +7,6 @@ tags: ["C#","XNA"]
 layout: "../../layouts/BlogPost.astro"
 ---
 
-# Spherical Coordinates in XNA
 OTD uses a globe based board. As such, spherical coordinates can be useful. The aim is to eventually be able to load a terrain map from a 2D image file. While I have a ways to go before that, I do have a utility class for managing spherical coordinates. Taking from DirectX's Vector2 and Vector3, I settled on Polar3 as a short yet descriptive stuct name.
 
 Spherical coordinates need three basic elements - the azimuth phi, Φ; elevation theta θ; and a radius, R. Φ runs between 0 and 2π. θ however presents some choices. We can set one of the poles to be 0 and the other π, or set the equator to 0 and the poles to be +/- π/2. I haven't gotten far enough to determine which is the best way, leaving the north pole at 0 appears to be the easiest option when dealing with rotations. We'll see in practice though. Two properties for latitude and longitude can be set up that handle as expected.

@@ -1,45 +1,19 @@
 ---
-
-import 'uno.css';
-
 // Component Imports
+import Layout from "../layouts/Layout.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
-import Counter from "../components/Counter.vue";
 
-let allPosts = await Astro.glob('./posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
-
+let allPosts = await Astro.glob("./posts/*.mdx");
+allPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.date).valueOf() -
+    new Date(a.frontmatter.date).valueOf()
+);
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <style>
-  </style>
-</head>
-
-<body>
-  <div class="container-xl">
-    <header>
-      <h1 class="text-lg">
-        .chronoclast
-      </h1>
-    </header>
-    <main>
-      <Counter client:visible>SLOOO</Counter>
-      {allPosts.map((p) =>
-      <BlogPostPreview post={p} />)}
-    </main>
-  </div>
-</body>
-<footer>
-
-</footer>
-
-</html>
+<Layout>
+  {allPosts.map((p) => <BlogPostPreview post={p} />)}
+</Layout>

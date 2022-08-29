@@ -6,9 +6,11 @@
     "resolveJsonModule": true,
     // https://www.typescriptlang.org/tsconfig#paths
     "paths": { // import aliases
-      "@/*": [
-        "./src/*"
-      ]
+      "paths": {
+        "@/*": [
+          "./src/*"
+        ]
+      }
     }
   }
 }
