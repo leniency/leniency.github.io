@@ -15,5 +15,14 @@ allPosts = allPosts.sort(
 ---
 
 <Layout>
+
+  <div>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a rel="me" href="https://hachyderm.io/@leniency">hachyderm.io/@leniency</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>.posts</h2>
+  </div>
   {allPosts.map((p) => <BlogPostPreview post={p} />)}
 </Layout>

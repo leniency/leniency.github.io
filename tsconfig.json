@@ -5,12 +5,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     // https://www.typescriptlang.org/tsconfig#paths
-    "paths": { // import aliases
-      "paths": {
-        "@/*": [
-          "./src/*"
-        ]
-      }
+    "paths": { // import aliases\
+      "@/*": [
+        "./src/*"
+      ]
     }
   }
 }

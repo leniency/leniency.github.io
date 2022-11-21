@@ -3,12 +3,9 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://leniency.github.io',
+    site: 'https://leniency.github.io',
 
-
-	integrations: [mdx()],
-	vite: {
-		plugins: [
-		],
-	},
+    integrations: [
+        mdx()
+    ],
 });

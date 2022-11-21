@@ -1,18 +1,21 @@
+---
+import "../styles/site.scss";
+---
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <style>
-
-        </style>
     </head>
 
     <body>
-        <div class="container-xl">
-            <header>
-                <h1 class="text-lg">.chronoclast</h1>
-            </header>
+        <nav class="navbar fixed-top bg-dark">
+            <div class="container-lg">
+              <a class="navbar-brand" href="https://chronoclast.com">.chronoclast</a>
+            </div>
+          </nav>
+        <div class="container-lg">
             <main>
                 <slot />
             </main>
