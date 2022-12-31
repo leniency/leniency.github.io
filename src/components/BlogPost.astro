@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon";
+
 export interface Props {
   title: string;
   date: string;
@@ -12,7 +14,10 @@ const { title, date } = Astro.props;
     <header>
       <ul class="list-inline">
         <li class="list-inline-item">
-          <a href="/">Home</a>
+          <a href="/">
+            <Icon name="angle-left" />
+            Home
+          </a>
         </li>
         <li class="list-inline-item"></li>
       </ul>

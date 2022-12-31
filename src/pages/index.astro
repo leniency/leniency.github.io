@@ -2,17 +2,30 @@
 // Component Imports
 import Layout from "../layouts/Layout.astro";
 import BlogPostsList from "../components/BlogPostsList.astro";
-
+import { Icon } from "astro-icon";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <Layout>
-  <div>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a rel="me" href="https://hachyderm.io/@leniency">hachyderm.io/@leniency</a></li>
-    </ul>
+  <div class="d-flex">
+    <a
+      rel="me"
+      href="https://hachyderm.io/@leniency"
+      class="me-4 text-primary"
+    >
+      <Icon name="mastodon" />
+      <span>hachyderm.io/@leniency</span>
+    </a>
+    <a
+      rel="me"
+      href="https://github.com/leniency"
+      class="me-4 text-primary"
+    >
+      <Icon name="github" />
+      <span>github.com/leniency</span>
+    </a>
   </div>
 
   <div class="mt-3">
