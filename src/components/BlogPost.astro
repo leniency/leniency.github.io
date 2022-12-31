@@ -7,13 +7,23 @@ export interface Props {
 const { title, date } = Astro.props;
 ---
 
-<article> 
+<article>
   <div>
     <header>
-      <p class="publish-date">{date}</p>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="/">Home</a>
+        </li>
+        <li class="list-inline-item"></li>
+      </ul>
     </header>
     <main>
       <h2>{title}</h2>
+      <div class="border-bottom border-dark pb-3 mb-3">
+        <small class="opacity-50">
+          {new Date(date)?.toDateString()}
+        </small>
+      </div>
       <slot />
     </main>
   </div>

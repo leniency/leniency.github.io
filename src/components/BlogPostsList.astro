@@ -1,0 +1,26 @@
+---
+let allPosts = await Astro.glob("../pages/posts/*.mdx");
+allPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.date).valueOf() -
+    new Date(a.frontmatter.date).valueOf()
+);
+---
+
+<ul class="list-group list-group-flush">
+  {
+    allPosts.map((post) => (
+      <li class="list-group-item px-0" style="--bs-list-group-bg: transparent">
+        <div>
+          <small class="opacity-50">
+            {new Date(post.frontmatter.date)?.toDateString()}
+          </small>
+          <h3>
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </h3>
+        </div>
+        {post.frontmatter.description && <div>{post.frontmatter.description}</div>}
+      </li>
+    ))
+  }
+</ul>

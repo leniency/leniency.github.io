@@ -1,28 +1,22 @@
 ---
 // Component Imports
 import Layout from "../layouts/Layout.astro";
-import BlogPostPreview from "../components/BlogPostPreview.astro";
+import BlogPostsList from "../components/BlogPostsList.astro";
 
-let allPosts = await Astro.glob("./posts/*.mdx");
-allPosts = allPosts.sort(
-  (a, b) =>
-    new Date(b.frontmatter.date).valueOf() -
-    new Date(a.frontmatter.date).valueOf()
-);
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <Layout>
-
   <div>
     <ul class="list-inline">
       <li class="list-inline-item"><a rel="me" href="https://hachyderm.io/@leniency">hachyderm.io/@leniency</a></li>
     </ul>
   </div>
-  <div>
+
+  <div class="mt-3">
     <h2>.posts</h2>
   </div>
-  {allPosts.map((p) => <BlogPostPreview post={p} />)}
+  <BlogPostsList />
 </Layout>
