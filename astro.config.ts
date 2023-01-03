@@ -8,4 +8,19 @@ export default defineConfig({
     integrations: [
         mdx()
     ],
+
+    vite: {
+        build: {
+            rollupOptions: {
+                output: {
+                    manualChunks: (id) => {
+                        // console.log(`Chunky ${id.substring(id.indexOf('node_modules'))}`);
+                        if (id.includes('node_modules/babylon')) {
+                            return 'babylon';
+                        }
+                    }
+                }
+            }
+        }
+    }
 });
