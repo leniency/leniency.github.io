@@ -5,15 +5,17 @@
 // -----------
 
 .astro-code {
-    border-radius: 5px;
-    margin-bottom: 1rem;
+    margin: 1rem -1rem 1rem -1rem;
     padding: 1rem;
+    box-shadow: $box-shadow-sm;
+}
 
+canvas {
     box-shadow: $box-shadow-sm;
 }
 
 body {
-    padding-top: $navbar-padding-y * 2 + 3rem;
+    background: #000;
 
     nav.navbar {
         opacity: 0.95;
@@ -32,6 +34,14 @@ svg[astro-icon] {
 }
 
 main {
+    border: 10px solid rgba(255, 255, 255, 0.05);
+    border-top: none;
+    box-shadow: inset 0 1rem 1rem rgb(0 0 0 / 15%) !important;
+    border-bottom: none;
+    padding: $spacer $spacer 0 $spacer;
+    padding-top: $navbar-padding-y * 2 + 3rem;
+    background-color: $body-bg;
+
     a {
         text-decoration: none;
         border-bottom: 1px solid transparent;
@@ -39,5 +49,12 @@ main {
         &:hover {
             border-bottom: 1px solid currentColor;
         }
+    }
+
+    >footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        //margin: $spacer $spacer * 3 0 $spacer * 3;
+        margin: $spacer * 2 $spacer * 3 0 $spacer * 3;
+        padding: $spacer * 2 $spacer;
     }
 }

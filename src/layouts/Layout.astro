@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon";
 import "../styles/site.scss";
 ---
 
@@ -12,14 +13,19 @@ import "../styles/site.scss";
     <body>
         <nav class="navbar fixed-top bg-dark shadow">
             <div class="container-lg">
-              <a class="navbar-brand text-white" href="https://chronoclast.com">.chronoclast</a>
+                <a
+                    class="navbar-brand text-white"
+                    href="https://chronoclast.com">.chronoclast</a
+                >
             </div>
-          </nav>
+        </nav>
         <div class="container-lg">
             <main>
                 <slot />
+                <footer class="text-center">
+                    <Icon name="rocket" />
+                </footer>
             </main>
-            <footer></footer>
         </div>
     </body>
 </html>

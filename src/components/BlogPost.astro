@@ -22,14 +22,12 @@ const { title, date } = Astro.props;
         <li class="list-inline-item"></li>
       </ul>
     </header>
-    <main>
-      <h2>{title}</h2>
-      <div class="border-bottom border-dark pb-3 mb-3">
-        <small class="opacity-50">
-          {new Date(date)?.toDateString()}
-        </small>
-      </div>
-      <slot />
-    </main>
+    <h2>{title}</h2>
+    <div class="border-bottom border-dark pb-3 mb-3">
+      <small class="opacity-50">
+        {new Date(date)?.toDateString()}
+      </small>
+    </div>
+    <slot />
   </div>
 </article>
