@@ -1,6 +1,7 @@
 ---
 title: Randomizing Data
 date: 2014-04-18
+pubDate: 2014-04-18
 description: ""
 categories: []
 tags: ["SQL"]
@@ -20,7 +21,7 @@ BEGIN TRANSACTION
 GO
 
 /* Drop temp table if exists. */
-IF OBJECT_ID('tempdb..#RandomData') IS NOT NULL 
+IF OBJECT_ID('tempdb..#RandomData') IS NOT NULL
 	DROP TABLE #RandomData
 GO
 

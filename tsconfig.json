@@ -4,11 +4,11 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": "./src",
     // https://www.typescriptlang.org/tsconfig#paths
     "paths": { // import aliases\
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": [ "./*" ]
     }
   }
 }

@@ -5,13 +5,18 @@
 // -----------
 
 .astro-code {
-    margin: 1rem -1rem 1rem -1rem;
+    margin: 1rem calc(var(--bs-gutter-x) * -0.5) 1rem calc(var(--bs-gutter-x) * -0.5);
     padding: 1rem;
     box-shadow: $box-shadow-sm;
 }
 
 canvas {
     box-shadow: $box-shadow-sm;
+}
+
+.canvas-flush {
+    margin: 1rem calc(var(--bs-gutter-x) * -0.5) 1rem calc(var(--bs-gutter-x) * -0.5);
+    width: calc(var(--bs-gutter-x) + 100%);
 }
 
 body {
@@ -34,12 +39,12 @@ svg[astro-icon] {
 }
 
 main {
-    border: 10px solid rgba(255, 255, 255, 0.05);
+    border: calc(var(--bs-gutter-x) * 0.5) solid rgba(255, 255, 255, 0.05);
     border-top: none;
     box-shadow: inset 0 1rem 1rem rgb(0 0 0 / 15%) !important;
     border-bottom: none;
-    padding: $spacer $spacer 0 $spacer;
     padding-top: $navbar-padding-y * 2 + 3rem;
+    min-height: 100vh;
     background-color: $body-bg;
 
     a {
@@ -53,7 +58,6 @@ main {
 
     >footer {
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-        //margin: $spacer $spacer * 3 0 $spacer * 3;
         margin: $spacer * 2 $spacer * 3 0 $spacer * 3;
         padding: $spacer * 2 $spacer;
     }

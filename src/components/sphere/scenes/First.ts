@@ -24,6 +24,6 @@ export default class First extends BaseScene {
         // Create a basic light, aiming 0,1,0 - meaning, to the sky.
         var light = new HemisphericLight('light1', new Vector3(0, 0.6, 0), this.scene);
 
-        new Geosphere("world", { subdivisions: 7 }, this.scene);
+        new Geosphere("world", { subdivisions: 5 }, this.scene);
     }
 }

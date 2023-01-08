@@ -1,6 +1,7 @@
 ---
 title: "Entity Systems Part 1: Entity and EntityManager"
 date: 2014-04-18
+pubDate: 2014-04-18
 description: ""
 categories: []
 tags: ["C#","EntitySystems"]
@@ -31,11 +32,11 @@ public class Entity
     }
 
     /// <summary>
-    /// Static instance of the entity manager.  Entities should be able to add 
+    /// Static instance of the entity manager.  Entities should be able to add
     /// themselves to the manager on creation - saves having to remember to do this.
     /// </summary>
     public static EntityManager EntityManager { get; set; }
-        
+
     public Entity(ulong id)
     {
         _id = id;
@@ -97,7 +98,7 @@ public class EntityManager
                 Add(new Entity(index));
             }
 
-            return _entities[index]; 
+            return _entities[index];
         }
     }
 

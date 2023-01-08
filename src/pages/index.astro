@@ -1,7 +1,7 @@
 ---
 // Component Imports
-import Layout from "../layouts/Layout.astro";
-import BlogPostsList from "../components/BlogPostsList.astro";
+import Layout from "@/layouts/Layout.astro";
+import BlogPostsList from "@/components/BlogPostsList.astro";
 import { Icon } from "astro-icon";
 
 // Full Astro Component Syntax:
@@ -9,17 +9,6 @@ import { Icon } from "astro-icon";
 ---
 
 <Layout>
-  <div class="d-flex">
-    <a rel="me" href="https://hachyderm.io/@leniency" class="me-4 text-primary">
-      <Icon name="mastodon" />
-      <span>hachyderm.io/@leniency</span>
-    </a>
-    <a rel="me" href="https://github.com/leniency" class="me-4 text-primary">
-      <Icon name="github" />
-      <span>github.com/leniency</span>
-    </a>
-  </div>
-
   <div class="row mt-3">
     <div class="col-md-6 col-lg-8">
       <h2>.posts</h2>
@@ -29,7 +18,7 @@ import { Icon } from "astro-icon";
       <h2>.misc</h2>
       <div>
         <h3>
-          <a href="/games/sphere">Sphere 1</a>
+          <a href="/sphere">Sphere 1</a>
         </h3>
       </div>
     </div>

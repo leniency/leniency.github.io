@@ -12,6 +12,7 @@ export default abstract class BaseScene {
     public get scene(): Scene {
         return this._scene;
     }
+
     constructor(main: Main) {
         this._main = main;
         this._scene = new Scene(main.engine);

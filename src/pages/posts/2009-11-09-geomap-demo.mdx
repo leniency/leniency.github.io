@@ -1,6 +1,7 @@
 ---
 title: "EntitySystems Part 3: EntityCollections"
 date: 2014-04-18
+pubDate: 2014-04-18
 description: ""
 categories: []
 tags: ["C#","EntitySystems"]
@@ -60,7 +61,7 @@ internal EntityCollection(EntityManager entityManager, Type[] types)
 internal EntityCollection(EntityManager entityManager, Type[] types, Func comparer)
     : this(entityManager, types)
 {
-    // 
+    //
     var lambdaComparer = new Engine.Tools.LambdaComparer(comparer);
 
     _sortedEntities = new SortedSet(lambdaComparer);

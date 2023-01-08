@@ -8,6 +8,7 @@ import "../styles/site.scss";
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title></title>
     </head>
 
     <body>
@@ -19,13 +20,20 @@ import "../styles/site.scss";
                 >
             </div>
         </nav>
-        <div class="container-lg">
-            <main>
+        <main class="container-lg d-flex flex-column">
+            <div class="flex-fill">
                 <slot />
-                <footer class="text-center">
-                    <Icon name="rocket" />
-                </footer>
-            </main>
+            </div>
+            <footer class="d-flex">
+                <a rel="me" href="https://github.com/leniency" class="me-4 text-primary">
+                    <Icon name="github" />
+                    <span>github.com/leniency</span>
+                </a>
+                <a rel="me" href="https://hachyderm.io/@leniency" class="me-4 text-primary">
+                    <Icon name="mastodon" />
+                    <span>hachyderm.io/@leniency</span>
+                </a>
+        </footer>
         </div>
     </body>
 </html>
