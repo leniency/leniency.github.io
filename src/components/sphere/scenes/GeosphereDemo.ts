@@ -3,11 +3,15 @@ import BaseScene from "./BaseScene";
 import Main from "../Main";
 import { Geosphere } from "../components/Geosphere";
 
-export default class First extends BaseScene {
+export interface GeosphereOptions {
+    subdivisions?: number
+}
+
+export default class GeosphereDemo extends BaseScene {
 
     _camera: TargetCamera;
 
-    constructor(main: Main) {
+    constructor(main: Main, options?: GeosphereOptions) {
         super(main);
 
         this._camera = new ArcRotateCamera("camera1", -0.8, 1, 3, Vector3.Zero(), this.scene);
@@ -24,6 +28,8 @@ export default class First extends BaseScene {
         // Create a basic light, aiming 0,1,0 - meaning, to the sky.
         var light = new HemisphericLight('light1', new Vector3(0, 0.6, 0), this.scene);
 
-        new Geosphere("world", { subdivisions: 5 }, this.scene);
+        new Geosphere("world", {
+            subdivisions: options?.subdivisions ?? 5
+        }, this.scene);
     }
 }

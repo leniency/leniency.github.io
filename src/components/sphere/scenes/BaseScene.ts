@@ -21,4 +21,8 @@ export default abstract class BaseScene {
     public render() {
         this._scene.render();
     }
+
+    public dispose() {
+        this._scene.dispose();
+    }
 }

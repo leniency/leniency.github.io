@@ -6,9 +6,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": "./src",
-    // https://www.typescriptlang.org/tsconfig#paths
-    "paths": { // import aliases\
-      "@/*": [ "./*" ]
-    }
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
