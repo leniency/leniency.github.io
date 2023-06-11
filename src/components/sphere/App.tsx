@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState, useEffect } from 'preact/hooks';
 import Main from "./Main";
 
 const main = new Main();
 
-export default function Sphere() {
+export default function App() {
     const [scenes, setScenes] = useState([]);
 
     useEffect(() => {

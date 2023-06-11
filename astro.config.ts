@@ -1,14 +1,14 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 
-import react from "@astrojs/react";
+import preact from "@astrojs/preact";
 
 // https://astro.build/config
 export default defineConfig({
   //site: 'https://leniency.github.io',
   site: 'https://chronoclast.com',
   trailingSlash: 'ignore',
-  integrations: [mdx(), react()],
+  integrations: [mdx(), preact()],
   vite: {
     build: {
       rollupOptions: {
