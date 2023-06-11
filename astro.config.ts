@@ -1,11 +1,10 @@
-import { defineConfig } from 'astro/config';
+import { ViteUserConfig, defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 
 import preact from "@astrojs/preact";
 
 // https://astro.build/config
 export default defineConfig({
-  //site: 'https://leniency.github.io',
   site: 'https://chronoclast.com',
   trailingSlash: 'ignore',
   integrations: [mdx(), preact()],
@@ -24,5 +23,5 @@ export default defineConfig({
         }
       }
     }
-  }
+  } as ViteUserConfig
 });
