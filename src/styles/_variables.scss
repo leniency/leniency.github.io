@@ -1,4 +1,4 @@
-// Darkly 5.2.2
+// Darkly 5.3.0
 // Bootswatch
 
 $theme: "darkly" !default;
@@ -19,14 +19,14 @@ $gray-800: #303030 !default;
 $gray-900: #222 !default;
 $black:    #000 !default;
 
-$blue:    #4B84A1 !default;
-$indigo:  #6B5B65 !default;
-$purple:  #6B5B65 !default;
+$blue:    #375a7f !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
 $red:     #e74c3c !default;
-$orange:  #DF7454 !default;
-$yellow:  #E8CA8A !default;
-$green:   #557A69 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #f39c12 !default;
+$green:   #00bc8c !default;
 $teal:    #20c997 !default;
 $cyan:    #3498db !default;
 
@@ -63,7 +63,7 @@ $text-muted:                  $gray-600 !default;
 
 $table-border-color:          $gray-700 !default;
 
-$table-bg-scale:              0 !default;
+$table-bg-scale:              0% !default;
 
 // Forms
 
@@ -75,6 +75,8 @@ $input-group-addon-bg:              $gray-700 !default;
 
 $form-check-input-bg:                     $white !default;
 $form-check-input-border:                 none !default;
+
+$form-select-disabled-color:        $gray-600 !default;
 
 $form-file-button-color:          $white !default;
 

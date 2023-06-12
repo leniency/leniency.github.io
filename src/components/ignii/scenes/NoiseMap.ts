@@ -1,6 +1,6 @@
 import * as ex from 'excalibur';
 import { loader, Resources } from '../resources';
-import { Player } from "../actors/player";
+import { Player } from "../actors/Player";
 import { config } from "../config";
 import { MapHighlight } from './MapHighlight';
 import { makeRectangle } from 'fractal-noise';

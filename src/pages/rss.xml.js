@@ -1,6 +1,6 @@
-import rss from '@astrojs/rss';
+import rss, { pagesGlobToRssItems } from '@astrojs/rss';
 
-export const get = () => rss({
+export const get = async () => rss({
     // `<title>` field in output xml
     title: '.chronoclast',
 
@@ -14,6 +14,8 @@ export const get = () => rss({
     // list of `<item>`s in output xml
     // simple example: generate items for every md file in /src/pages
     // see "Generating items" section for required frontmatter and advanced use cases
-    items: import.meta.glob('./**/*.mdx'),
+    items: await pagesGlobToRssItems(
+        import.meta.glob('./**/*.mdx'),
+    ),
     customData: `<language>en-us</language>`,
 });
