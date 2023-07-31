@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon";
+const title = "Melons";
+
+import App from "@/components/cantaloupe/App";
+---
+
+<Layout>
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a href="/">
+          <Icon name="angle-left" />
+          Home
+        </a>
+      </li>
+      <li class="list-inline-item"></li>
+    </ul>
+  </header>
+  <h2>{title}</h2>
+  <App client:only="react" />
+</Layout>
