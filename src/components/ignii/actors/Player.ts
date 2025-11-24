@@ -44,33 +44,33 @@ export class Player extends ex.Actor {
         // Reset velocity.
         let v = new ex.Vector(0, 0);
 
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.W)
-            || engine.input.keyboard.isHeld(ex.Input.Keys.Up)
-            || engine.input.gamepads.at(0).getAxes(ex.Input.Axes.LeftStickY) > 0.5) {
+        if (engine.input.keyboard.isHeld(ex.Keys.W)
+            || engine.input.keyboard.isHeld(ex.Keys.Up)
+            || engine.input.gamepads.at(0).getAxes(ex.Axes.LeftStickY) > 0.5) {
             v.y -= 1;
         }
 
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.S)
-            || engine.input.keyboard.isHeld(ex.Input.Keys.Down)
-            || engine.input.gamepads.at(0).getAxes(ex.Input.Axes.LeftStickY) < -0.5) {
+        if (engine.input.keyboard.isHeld(ex.Keys.S)
+            || engine.input.keyboard.isHeld(ex.Keys.Down)
+            || engine.input.gamepads.at(0).getAxes(ex.Axes.LeftStickY) < -0.5) {
             v.y += 1;
         }
 
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.D)
-            || engine.input.keyboard.isHeld(ex.Input.Keys.Right)
-            || engine.input.gamepads.at(0).getAxes(ex.Input.Axes.LeftStickX) > 0.5) {
+        if (engine.input.keyboard.isHeld(ex.Keys.D)
+            || engine.input.keyboard.isHeld(ex.Keys.Right)
+            || engine.input.gamepads.at(0).getAxes(ex.Axes.LeftStickX) > 0.5) {
             v.x += 1;
         }
 
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.A)
-            || engine.input.keyboard.isHeld(ex.Input.Keys.Left)
-            || engine.input.gamepads.at(0).getAxes(ex.Input.Axes.LeftStickX) > 0.5) {
+        if (engine.input.keyboard.isHeld(ex.Keys.A)
+            || engine.input.keyboard.isHeld(ex.Keys.Left)
+            || engine.input.gamepads.at(0).getAxes(ex.Axes.LeftStickX) > 0.5) {
             v.x -= 1;
         }
 
         let speed = config.player.speed;
 
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.ShiftLeft)) {
+        if (engine.input.keyboard.isHeld(ex.Keys.ShiftLeft)) {
             speed = speed * config.player.speed;
         }
 
