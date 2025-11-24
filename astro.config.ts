@@ -1,5 +1,6 @@
 import { ViteUserConfig, defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import icon from "astro-icon";
 
 import preact from "@astrojs/preact";
 
@@ -7,7 +8,11 @@ import preact from "@astrojs/preact";
 export default defineConfig({
   site: 'https://chronoclast.com',
   trailingSlash: 'ignore',
-  integrations: [mdx(), preact()],
+  integrations: [
+    mdx(),
+    preact(),
+    icon()
+  ],
   vite: {
     build: {
       rollupOptions: {
